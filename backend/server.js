@@ -4,6 +4,7 @@ dotenv.config();
 import express from "express";
 import cors from "cors";
 import connectDB from "./config/db.js";
+import foodRouter from "./routes/foodRoutes.js";
 
 // import { EventEmitter } from "events";
 // EventEmitter.defaultMaxListeners = 15; // Set to 0 for unlimited
@@ -11,12 +12,15 @@ import connectDB from "./config/db.js";
 const app = express();
 const port = 4000;
 
-//db connection
-connectDB();
-
 //middleware
 app.use(express.json());
 app.use(cors());
+
+//db connection
+connectDB();
+
+// api end points
+app.use("/api/food", foodRouter);
 
 app.get("/", (req, res) => {
   res.send("API Working...");
