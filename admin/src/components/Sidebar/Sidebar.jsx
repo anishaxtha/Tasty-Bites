@@ -1,7 +1,8 @@
 import React from "react";
+import "./Sidebar.css";
 
 const Sidebar = () => {
-  return <div>Sidebar</div>;
+  return <div>Admin panel</div>;
 };
 
 export default Sidebar;
