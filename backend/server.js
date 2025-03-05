@@ -13,6 +13,7 @@ const app = express();
 const port = 4000;
 
 //middleware
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
@@ -21,6 +22,7 @@ connectDB();
 
 // api end points
 app.use("/api/food", foodRouter);
+app.use("/images", express.static("uploads"));
 
 app.get("/", (req, res) => {
   res.send("API Working...");
