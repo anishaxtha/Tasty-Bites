@@ -4,8 +4,7 @@ import "../Add/Add.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const Add = () => {
-  const url = "http://localhost:4000";
+const Add = ({ url }) => {
   const [image, setImage] = useState(false);
   const [preview, setPreview] = useState(null); // New state for preview
   const [data, setData] = useState({
@@ -52,6 +51,7 @@ const Add = () => {
         category: "Salad",
       });
       setImage(false);
+      setPreview(null); // Clear the preview image
       toast.success(response.data.message);
     } else {
       // console.log("submission failed", response.data);
