@@ -5,6 +5,7 @@ import express from "express";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import foodRouter from "./routes/foodRoutes.js";
+import userRouter from "./routes/userRoute.js";
 
 // import { EventEmitter } from "events";
 // EventEmitter.defaultMaxListeners = 15; // Set to 0 for unlimited
@@ -23,6 +24,7 @@ connectDB();
 // api end points
 app.use("/api/food", foodRouter);
 app.use("/images", express.static("uploads"));
+app.use("/api/user", userRouter);
 
 app.get("/", (req, res) => {
   res.send("API Working...");
