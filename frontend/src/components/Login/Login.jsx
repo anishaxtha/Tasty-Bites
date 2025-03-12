@@ -1,12 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Login.css";
 import { assets } from "../../assets/assets";
 import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Login = ({ setShowLogin }) => {
   const { url, setToken } = useContext(StoreContext);
   const [currState, setCurrState] = useState("Sign Up");
+  const [loading, setLoading] = useState(false);
 
   const [data, setData] = useState({
     name: "",
@@ -26,21 +28,47 @@ const Login = ({ setShowLogin }) => {
 
   const onLogin = async (event) => {
     event.preventDefault();
+    setLoading(true);
 
-    let newUrl = url;
-    if (currState === "Login") {
-      newUrl += "/api/user/login";
-    } else {
-      newUrl += "/api/user/register";
-    }
+    try {
+      const endpoint =
+        currState === "Login" ? "/api/user/login" : "/api/user/register";
+      const response = await axios.post(`${url}${endpoint}`, data);
 
-    let response = await axios.post(newUrl, data);
-    if (response.data.success) {
-      setToken(response.data.token);
-      localStorage.setItem("token", response.data.token);
-      setShowLogin(false);
-    } else {
-      alert(response.data.message);
+      if (response.data.success) {
+        toast.success(
+          currState === "Login"
+            ? "Logged in successfully"
+            : "Account created successfully"
+        );
+        setToken(response.data.token);
+        localStorage.setItem("token", response.data.token);
+        setShowLogin(false);
+        // Clear form data
+        setData({
+          name: "",
+          email: "",
+          password: "",
+        });
+      } else {
+        toast.error(response.data.message || "An error occurred");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      if (error.response) {
+        // Server responded with an error
+        toast.error(error.response.data.message || "Server error occurred");
+      } else if (error.request) {
+        // Request was made but no response
+        toast.error(
+          "Cannot connect to server. Please check your internet connection."
+        );
+      } else {
+        // Other errors
+        toast.error("An error occurred. Please try again.");
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -86,7 +114,13 @@ const Login = ({ setShowLogin }) => {
             required
           />
         </div>
-        <button>{currState === "Sign Up" ? "Create account" : "Login"}</button>
+        <button disabled={loading}>
+          {loading
+            ? "Please wait..."
+            : currState === "Sign Up"
+            ? "Create account"
+            : "Login"}
+        </button>
         <div className="login-condition">
           <input type="checkbox" required />
           <p>By continuing, I agree to the terms of use & policy.</p>

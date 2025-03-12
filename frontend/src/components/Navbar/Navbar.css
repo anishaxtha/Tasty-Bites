@@ -59,6 +59,85 @@
 
 .navbar-profile {
   position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-profile img {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+}
+
+.nav-profile-dropdown {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  right: 0;
+  top: 45px;
+  z-index: 1000;
+  min-width: 180px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 8px 0;
+  margin: 0;
+  transition: all 0.3s ease;
+  transform: translateY(-10px);
+}
+
+.navbar-profile:hover .nav-profile-dropdown {
+  visibility: visible;
+  opacity: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid rgba(255, 99, 71, 0.2);
+  list-style: none;
+  transform: translateY(0);
+}
+
+/* Add padding to create a hoverable area */
+.nav-profile-dropdown::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 0;
+  right: 0;
+  height: 20px;
+}
+
+.nav-profile-dropdown li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-profile-dropdown li:hover {
+  background-color: #fff2ef;
+}
+
+.nav-profile-dropdown li p {
+  margin: 0;
+  color: #49557e;
+  font-size: 15px;
+}
+
+.hrline {
+  margin: 8px 0;
+  border: none;
+  height: 1px;
+  background-color: rgba(128, 128, 128, 0.15);
+}
+
+.nav-profile-dropdown img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
 }
 
 @media (max-width: 1050px) {

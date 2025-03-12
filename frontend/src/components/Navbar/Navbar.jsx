@@ -1,13 +1,24 @@
 import React, { useContext, useState } from "react";
 import "./Navbar.css";
 import { assets } from "../../assets/assets";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
 
 const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("menu");
+  const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
+  const navigate = useNavigate();
 
-  const { getTotalCartAmount, token } = useContext(StoreContext);
+  const logOut = () => {
+    try {
+      localStorage.removeItem("token");
+      setToken("");
+      navigate("/");
+      window.location.reload(); // Force a refresh to update the UI
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
 
   return (
     <div className="navbar">
@@ -63,7 +74,8 @@ const Navbar = ({ setShowLogin }) => {
                 <img src={assets.bag_icon} alt="" />
                 <p>Orders</p>
               </li>
-              <li>
+              <hr className="hrline" />
+              <li onClick={logOut}>
                 <img src={assets.logout_icon} alt="" />
                 <p>Logout</p>
               </li>
