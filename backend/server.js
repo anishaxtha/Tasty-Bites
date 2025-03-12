@@ -6,12 +6,13 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import foodRouter from "./routes/foodRoutes.js";
 import userRouter from "./routes/userRoute.js";
+import cartRouter from "./routes/cartRoutes.js";
 
 // import { EventEmitter } from "events";
 // EventEmitter.defaultMaxListeners = 15; // Set to 0 for unlimited
 //app config
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 //middleware
 app.use(express.urlencoded({ extended: true }));
@@ -25,6 +26,7 @@ connectDB();
 app.use("/api/food", foodRouter);
 app.use("/images", express.static("uploads"));
 app.use("/api/user", userRouter);
+app.use("/api/cart", cartRouter);
 
 app.get("/", (req, res) => {
   res.send("API Working...");
