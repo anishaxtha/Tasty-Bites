@@ -12,7 +12,7 @@ import cartRouter from "./routes/cartRoutes.js";
 // EventEmitter.defaultMaxListeners = 15; // Set to 0 for unlimited
 //app config
 const app = express();
-const port = process.env.PORT || 4000;
+const port = 4000;
 
 //middleware
 app.use(express.urlencoded({ extended: true }));
