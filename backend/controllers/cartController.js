@@ -51,6 +51,12 @@ const removeFromCart = async (req, res) => {
 const getCart = async (req, res) => {
   try {
     let userData = await userModel.findById(req.body.userId);
+    if (!userData) {
+      return res.json({
+        success: false,
+        message: "User not found",
+      });
+    }
     let cartData = await userData.cartData;
     res.json({
       success: true,
