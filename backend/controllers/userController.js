@@ -47,6 +47,7 @@ const registerUser = async (req, res) => {
       name: name,
       email: email,
       password: hashedPassword,
+      cartData: {}, // explicitly initialize the cartData
     });
 
     const user = await newUser.save();
@@ -57,6 +58,12 @@ const registerUser = async (req, res) => {
         success: true,
         message: "User created successfully",
         token,
+        user: {
+          id: user._id,
+          name: user.name,
+          email: user.email,
+          cartData: user.cartData,
+        },
       });
     } else {
       return res.status(400).json({
