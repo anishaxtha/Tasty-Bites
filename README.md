@@ -159,7 +159,7 @@ NODE_ENV - production/development
 
  <img src='/img2.png'>
  <img src='/img3.png'>
- <img src='/img1.png>
+ <img src='/img1.png'>
 
 ## 📝 License
 
