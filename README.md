@@ -112,12 +112,6 @@ A full-featured food delivery application built with the MERN stack (MongoDB, Ex
    - Backend API: `http://localhost:4000`
    - Admin Dashboard: `http://localhost:5173`
 
-## 📱 Screenshots
-
- <img src='/img2.png'>
- <img src='/img3.png'>
- <img src='/img1.png>
-
 ## 📄 API Documentation
 
 ### Authentication Endpoints
@@ -160,6 +154,12 @@ STRIPE_SECRET_KEY - Stripe API secret key
 FRONTEND_URL - URL for the frontend (for CORS)
 NODE_ENV - production/development
 ```
+
+## 📱 Screenshots
+
+ <img src='/img2.png'>
+ <img src='/img3.png'>
+ <img src='/img1.png>
 
 ## 📝 License
 
