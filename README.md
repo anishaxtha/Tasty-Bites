@@ -114,9 +114,9 @@ A full-featured food delivery application built with the MERN stack (MongoDB, Ex
 
 ## 📱 Screenshots
 
-![home page](image.png)
-![food items](image-1.png)
-![signup page](image-2.png)
+ <img src='/img2.png'>
+ <img src='/img3.png'>
+ <img src='/img1.png>
 
 ## 📄 API Documentation
 
@@ -170,4 +170,3 @@ This project is licensed under the MIT License
 Anisha Nayaju - [anishanayaju26@gmail.com](mailto:anishanayaju26@gmail.com)
 
 Project Link: [https://github.com/anishaxtha/Tasty-Bites](https://github.com/anishaxtha/Tasty-Bites)
-
